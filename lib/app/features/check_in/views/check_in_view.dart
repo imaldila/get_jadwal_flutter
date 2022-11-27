@@ -3,6 +3,8 @@ import 'package:get_jadwal/configs/configs.dart';
 import 'package:get_jadwal/constants/app_constants.dart';
 import 'package:get_jadwal/utils/utils.dart';
 
+import 'check_in_view_controller.dart';
+
 class CheckInView extends StatefulWidget {
   const CheckInView({super.key});
 
@@ -12,11 +14,13 @@ class CheckInView extends StatefulWidget {
 
 class _CheckInViewState extends State<CheckInView> {
   late TextEditingController _emailController;
+  late CheckInViewController _controller;
   final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     _emailController = TextEditingController();
+    _controller = CheckInViewController();
     _emailController.addListener(() {
       setState(() {});
     });
@@ -26,11 +30,8 @@ class _CheckInViewState extends State<CheckInView> {
   @override
   void dispose() {
     _emailController.dispose();
-    super.dispose();
-  }
 
-  double opacityColor() {
-    return _emailController.text.isNotEmpty ? 1 : 0.2;
+    super.dispose();
   }
 
   @override
@@ -103,14 +104,16 @@ class _CheckInViewState extends State<CheckInView> {
                     ),
                     const SizedBox(height: 22),
                     Opacity(
-                      opacity: opacityColor(),
+                      opacity: _controller.opacityColor(_emailController.text),
                       child: SizedBox(
                         height: 48,
                         width: sizeWidth(context),
                         child: ElevatedButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              print('validate');
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate())  {
+                              await _controller.postCheckIn(
+                                  email: _emailController.text.trim());
+                                  
                             }
                           },
                           style: ElevatedButton.styleFrom(
@@ -142,11 +145,3 @@ class _CheckInViewState extends State<CheckInView> {
     );
   }
 }
-
-// extension EmailValidator on String {
-//   bool isValidEmail() {
-//     return RegExp(
-//             r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-//         .hasMatch(this);
-//   }
-// }

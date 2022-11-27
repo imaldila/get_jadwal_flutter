@@ -35,6 +35,7 @@ class AppInterceptor extends Interceptor {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     log('RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}');
+    log(response.data);
 
     return super.onResponse(response, handler);
   }

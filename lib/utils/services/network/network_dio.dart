@@ -2,12 +2,11 @@ import 'package:dio/dio.dart';
 
 import 'app_interceptor.dart';
 
-
 class NetworkDio {
   static Dio createDio({
     required bool needAuth,
   }) {
-    const String baseUrl = '';
+    const String baseUrl = 'https://getjadwal.api.devcode.gethired.id';
 
     final options = BaseOptions(
       baseUrl: baseUrl,
