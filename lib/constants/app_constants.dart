@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../configs/configs.dart';
+
 double sizeHeight(BuildContext context) {
   return MediaQuery.of(context).size.height;
 }
@@ -18,24 +20,24 @@ class Labels {
 }
 
 OutlineInputBorder primaryEnable = OutlineInputBorder(
-  borderRadius: BorderRadius.circular(12),
+  borderRadius: BorderRadius.circular(6),
   borderSide: const BorderSide(
-    color: Colors.grey,
+    color: Palette.kGrey,
     width: 2,
   ),
 );
 
 OutlineInputBorder primaryBorder = OutlineInputBorder(
-  borderRadius: BorderRadius.circular(12),
+  borderRadius: BorderRadius.circular(6),
   borderSide: const BorderSide(
-    color: Colors.grey,
+    color: Palette.kGrey,
     width: 2,
   ),
 );
 OutlineInputBorder primaryFocused = OutlineInputBorder(
-  borderRadius: BorderRadius.circular(12),
+  borderRadius: BorderRadius.circular(6),
   borderSide: const BorderSide(
-    color: Colors.blue,
+    color: Palette.kDarkPink,
     width: 2,
   ),
 );

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'palette.dart';
+
 ThemeData theme() {
   return ThemeData(
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: Palette.kBackgroundColor,
+    appBarTheme: const AppBarTheme(backgroundColor: Palette.kAppBarColor),
     textTheme: textTheme(),
   );
 }

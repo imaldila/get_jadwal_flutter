@@ -10,6 +10,8 @@ class AppRouter {
     log('This is route: ${settings.name}');
 
     switch (settings.name) {
+      case '/':
+        return MaterialPageRoute(builder: (context) => const CheckInView());
       case Routes.checkIn:
         return MaterialPageRoute(builder: (context) => const CheckInView());
       // case Routes.onboarding:
