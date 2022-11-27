@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get_jadwal/app/features/check_in/services/check_in_repository.dart';
 
-import '../models/check_in.dart';
+import '../models/user.dart';
 import '../services/check_in_service.dart';
 
 class CheckInViewController {
   final CheckInRepository _checkInRepository = CheckInService();
   bool isFetching = false;
 
-  var _checkIn = CheckIn();
-  CheckIn get checkIn => _checkIn;
+  var _user = User();
+  User get user => _user;
 
   Future<void> postCheckIn({required String email}) async {
     try {
       var data = await _checkInRepository.checkIn(email: email);
-      _checkIn = data;
+      _user = data;
     } catch (e) {
       SnackBar(
         content: Text(

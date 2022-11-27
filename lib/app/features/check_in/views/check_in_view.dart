@@ -38,6 +38,7 @@ class _CheckInViewState extends State<CheckInView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           'GetJadwal',
           style: Theme.of(context).textTheme.headline1!.copyWith(
@@ -110,10 +111,18 @@ class _CheckInViewState extends State<CheckInView> {
                         width: sizeWidth(context),
                         child: ElevatedButton(
                           onPressed: () async {
-                            if (_formKey.currentState!.validate())  {
-                              await _controller.postCheckIn(
-                                  email: _emailController.text.trim());
-                                  
+                            if (_formKey.currentState!.validate()) {
+                              await _controller
+                                  .postCheckIn(
+                                      email: _emailController.text.trim())
+                                  .then(
+                                    (value) => Navigator.of(context)
+                                        .pushReplacementNamed(
+                                      Routes.schedule,
+                                      arguments:
+                                          _controller.user.data!.email,
+                                    ),
+                                  );
                             }
                           },
                           style: ElevatedButton.styleFrom(

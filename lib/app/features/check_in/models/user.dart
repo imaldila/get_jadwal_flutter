@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-CheckIn checkInFromJson(String str) => CheckIn.fromJson(json.decode(str));
+User userFromJson(String str) => User.fromJson(json.decode(str));
 
-String checkInToJson(CheckIn data) => json.encode(data.toJson());
+String userToJson(User data) => json.encode(data.toJson());
 
-class CheckIn {
-  CheckIn({
+class User {
+  User({
     this.status,
     this.message,
     this.data,
@@ -15,7 +15,7 @@ class CheckIn {
   final String? message;
   final Data? data;
 
-  factory CheckIn.fromJson(Map<String, dynamic> json) => CheckIn(
+  factory User.fromJson(Map<String, dynamic> json) => User(
         status: json["status"],
         message: json["message"],
         data: Data.fromJson(json["data"]),
