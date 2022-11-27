@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get_jadwal/app/features/schedule/models/day.dart';
 
 import '../../../../../configs/configs.dart';
+import '../../../../../constants/constants.dart';
+import 'components/day_card.dart';
+import 'components/header_app.dart';
 
 class ScheduleView extends StatelessWidget {
   const ScheduleView({super.key, required this.user});
@@ -11,35 +15,45 @@ class ScheduleView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        title: HeaderApp(user: user),
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: sizeWidth(context) * 0.08, vertical: 54),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'GetJadwal',
-              style: Theme.of(context).textTheme.headline1!.copyWith(
-                    fontSize: 28,
-                    color: Palette.kWhite,
-                    fontWeight: FontWeight.w700,
-                  ),
-            ),
-            InkWell(
-              borderRadius: BorderRadius.circular(12),
-              onTap: () {
-                print('Tapped');
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Palette.kDarkPink,
+            Align(
+              alignment: Alignment.centerRight,
+              child: ElevatedButton.icon(
+                icon: const Icon(
+                  Icons.add,
+                  size: 16,
                 ),
-                child: Text(
-                  'Check out | $user',
-                  style: Theme.of(context).textTheme.headline1!.copyWith(
-                        fontSize: 14,
-                        color: Palette.kWhite,
-                        fontWeight: FontWeight.w700,
-                      ),
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  backgroundColor: Palette.kDarkPink,
+                ),
+                label: Text(
+                  'Buat Jadwal Kuliah',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText1!
+                      .copyWith(color: Palette.kWhite),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+            const SizedBox(height: 28.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(
+                Day.days.length,
+                (index) => DayCard(
+                  day: Day.days[index],
                 ),
               ),
             )
